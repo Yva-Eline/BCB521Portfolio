@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts.\nA sentence. Two sentences."
+  },
+  {
+    "objectID": "posts/post-with-code/d20_roll.html",
+    "href": "posts/post-with-code/d20_roll.html",
+    "title": "Interactive d20 random generator",
+    "section": "",
+    "text": "@d20_roll let’s you roll a d20 die\n\n\nCode\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n\n\nCode\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n\n[1] 7\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  },
+  {
+    "objectID": "posts/post-with-code/d20_roll.html#d20-dice-roll",
+    "href": "posts/post-with-code/d20_roll.html#d20-dice-roll",
+    "title": "Interactive d20 random generator",
+    "section": "",
+    "text": "@d20_roll let’s you roll a d20 die\n\n\nCode\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n\n\nCode\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n\n[1] 7\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Mah Blog",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nSep 8, 2024\n\n\nYva Eline\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive d20 random generator\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\nYva Eline\n\n\n\n\n\n\n\n\n\n\n\n\nInteractive d20 random generator\n\n\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\nYva Eline\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nAug 29, 2024\n\n\nYva Eline\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Mah Blog",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/post-with-code/assignment_1.html",
+    "href": "posts/post-with-code/assignment_1.html",
+    "title": "Interactive d20 random generator",
+    "section": "",
+    "text": "@d20_roll let’s you roll a d20 die\n\n\nCode\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n\n\nCode\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n\n[1] 12\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  },
+  {
+    "objectID": "posts/post-with-code/assignment_1.html#d20-dice-roll",
+    "href": "posts/post-with-code/assignment_1.html#d20-dice-roll",
+    "title": "Interactive d20 random generator",
+    "section": "",
+    "text": "@d20_roll let’s you roll a d20 die\n\n\nCode\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n\n\nCode\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n\n[1] 12\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/post-with-code/index.html#d20-dice-roll",
+    "href": "posts/post-with-code/index.html#d20-dice-roll",
+    "title": "Post With Code",
+    "section": "d20 Dice Roll",
+    "text": "d20 Dice Roll\n@d20_roll let’s you roll a d20 die\n\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n[1] 7\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  }
+]

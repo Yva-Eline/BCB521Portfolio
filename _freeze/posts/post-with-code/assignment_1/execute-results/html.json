@@ -1,0 +1,17 @@
+{
+  "hash": "68db221c5db4489a389248271394d142",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Interactive d20 random generator\"\nauthor: \"Yva Eline\"\ndate: \"8/29/2024\"\nformat: \n  html:\n    fig-width: 8\n    fig-height: 4\n    code-fold: true\n---\n\n\n## d20 Dice Roll\n\n@d20_roll let's you roll a d20 die\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Function to simulate a d20 die roll\nroll_d20 <- function()\n{\n  result <- sample(1:20, 1)\n  return(result)\n}\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n# Roll and display result\nroll_result <- roll_d20()\nroll_result\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 12\n```\n\n\n:::\n:::\n\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n<!-- This is just regular HTML and JavaScript embedded in the document -->\n\n<button id=\"rollButton\">Roll the d20</button>\n<p>Your roll: <span id=\"rollResult\"></span></p>\n\n<script>\n// JavaScript function to simulate a d20 die roll\ndocument.getElementById(\"rollButton\").onclick = function() {\n  // Generate a random number between 1 and 20\n  var roll = Math.floor(Math.random() * 20) + 1;\n  // Display the result in the rollResult span\n  document.getElementById(\"rollResult\").textContent = roll;\n};\n</script>\n\n\n\n\n",
+    "supporting": [
+      "assignment_1_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

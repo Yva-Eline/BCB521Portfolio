@@ -1,0 +1,51 @@
+---
+title: "Interactive d20 random generator"
+author: "Yva Eline"
+date: "8/29/2024"
+format: 
+  html:
+    fig-width: 8
+    fig-height: 4
+    code-fold: true
+---
+
+## d20 Dice Roll
+
+@d20_roll let's you roll a d20 die
+
+```{r}
+# Function to simulate a d20 die roll
+roll_d20 <- function()
+{
+  result <- sample(1:20, 1)
+  return(result)
+}
+```
+
+```{r}
+# Roll and display result
+roll_result <- roll_d20()
+roll_result
+```
+
+
+Click the button below to roll a 20-sided die and see the result.
+
+<!-- This is just regular HTML and JavaScript embedded in the document -->
+
+<button id="rollButton">Roll the d20</button>
+<p>Your roll: <span id="rollResult"></span></p>
+
+<script>
+// JavaScript function to simulate a d20 die roll
+document.getElementById("rollButton").onclick = function() {
+  // Generate a random number between 1 and 20
+  var roll = Math.floor(Math.random() * 20) + 1;
+  // Display the result in the rollResult span
+  document.getElementById("rollResult").textContent = roll;
+};
+</script>
+
+
+
+

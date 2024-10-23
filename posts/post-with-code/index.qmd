@@ -41,7 +41,7 @@ Roll the d20
 
 </button>
 
-<p>Your roll: </p>
+<p>Your roll:</p>
 
 ```{=html}
 <script>

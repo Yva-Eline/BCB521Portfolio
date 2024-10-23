@@ -61,5 +61,96 @@
     "title": "Post With Code",
     "section": "d20 Dice Roll",
     "text": "d20 Dice Roll\n@d20_roll let’s you roll a d20 die\n\n# Function to simulate a d20 die roll\nroll_d20 &lt;- function()\n{\n  result &lt;- sample(1:20, 1)\n  return(result)\n}\n\n\n# Roll and display result\nroll_result &lt;- roll_d20()\nroll_result\n\n[1] 7\n\n\nClick the button below to roll a 20-sided die and see the result.\n\n\nRoll the d20\n\n\nYour roll:"
+  },
+  {
+    "objectID": "assignment_2.html",
+    "href": "assignment_2.html",
+    "title": "communicating through code",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "assignment_2.html#quarto",
+    "href": "assignment_2.html#quarto",
+    "title": "communicating through code",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "assignment_2.html#running-code",
+    "href": "assignment_2.html#running-code",
+    "title": "communicating through code",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "live_wild_animals.html",
+    "href": "live_wild_animals.html",
+    "title": "Larvae Grafting Experiments",
+    "section": "",
+    "text": "Introduction\nAdult honey bees (Apis mellifera) have a highly conserved bacterial microbiome consisting of 8-9 key species…. their larvae… do not. At this stage of development, larvae are\ntitle: “Interactive d20 random generator” author: “Yva Eline” date: “8/29/2024” format: html: fig-width: 8 fig-height: 4 code-fold: true"
+  },
+  {
+    "objectID": "live_wild_animals.html#quarto",
+    "href": "live_wild_animals.html#quarto",
+    "title": "live wild animals",
+    "section": "",
+    "text": "Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
+  },
+  {
+    "objectID": "live_wild_animals.html#running-code",
+    "href": "live_wild_animals.html#running-code",
+    "title": "live wild animals",
+    "section": "Running Code",
+    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Live Wild Animals",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "test.html#r-markdown",
+    "href": "test.html#r-markdown",
+    "title": "Live Wild Animals",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "test.html#including-plots",
+    "href": "test.html#including-plots",
+    "title": "Live Wild Animals",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
+  },
+  {
+    "objectID": "assignment_4.html",
+    "href": "assignment_4.html",
+    "title": "Bring Out Your Dead",
+    "section": "",
+    "text": "Summary of Experiment\nLarvae were subjected to a series of treatments with “Lactobacillus spp” and monitored for viability over a six days. Survivability grafts were generated to assess the consistency of the experiment.\n\n\nPackages and Libraries\nLook, man, you gotta install the packages and libraries somewhere… AND HERE THEY ARE!\ninstall.packages(“readxl”) install.packages(“dplyr”) install.packages(“ggplot2”)\nlibrary(readxl) library(dplyr) library(ggplot2)\n\n\nConclusion\n\n\nread data from each sheet & add a replicate column\nrep1 &lt;- read_excel(“larvae_ncimb_lacto.xlsx”, sheet = “replicate_1”) %&gt;% mutate(replicate = “Replicate 1”) rep2 &lt;- read_excel(“larvae_ncimb_lacto.xlsx”, sheet = “replicate_2”) %&gt;% mutate(replicate = “Replicate 2”) rep3 &lt;- read_excel(“larvae_ncimb_lacto.xlsx”, sheet = “replicate_3”) %&gt;% mutate(replicate = “Replicate 3”) rep4 &lt;- read_excel(“larvae_ncimb_lacto.xlsx”, sheet = “replicate_4”) %&gt;% mutate(replicate = “Replicate 4”)\n\n\ncombine data into one dataframe\ncombined_data &lt;- bind_rows(rep1, rep2, rep3, rep4)\n\n\nconvert treatment labels to upper case - because I am a dummy\ncombined_data &lt;- combined_data %&gt;% mutate(treatment = toupper(treatment))\n\n\ninspect\nprint(head(combined_data)) print(str(combined_data))\n\n\nsummarize data: calculate mean and standard error for alive larvae by treatment and day\nsummary_data &lt;- combined_data %&gt;% group_by(treatment, day) %&gt;% summarize( mean_alive_count = mean(alive_count, na.rm = TRUE), se_alive_count = sd(alive_count, na.rm = TRUE) / sqrt(n()) )\n#inspect summarized data - because here thar might be fuck ups, yarrr print(summary_data)\n\n\ncombined plot with error bars\ncombined_plot &lt;- ggplot(summary_data, aes(x = day, y = mean_alive_count, color = treatment, group = treatment)) + geom_line() + # Line graph geom_point() + # Points on the line graph geom_errorbar(aes(ymin = mean_alive_count - se_alive_count, ymax = mean_alive_count + se_alive_count), width = 0.2) + # Error bars labs(title = “Number of Alive Larvae Over Time by Treatment with Error Bars”, x = “Day”, y = “Mean Number of Alive Larvae”) + scale_color_manual( values = c(“1000” = “red”, “100” = “blue”, “10” = “green”, “NT” = “black”) ) + theme_minimal() + theme( legend.title = element_blank(), legend.text = element_text(size = 10), plot.background = element_rect(fill = “white”, color = NA), # Ensure white background panel.background = element_rect(fill = “white”, color = NA) # Ensure white background )\n\n\nview and save combined plot as .png\nprint(combined_plot) ggsave(“combined_plot.png”, plot = combined_plot, width = 8, height = 6, bg = “white”)\n\n\nnow for the individual replicates\nreplicates &lt;- unique(combined_data$replicate)\nfor (rep in replicates) { replicate_data &lt;- combined_data %&gt;% filter(replicate == rep)\np &lt;- ggplot(replicate_data, aes(x = day, y = alive_count, color = treatment, group = treatment)) + geom_line() + # Line graph geom_point() + # Points on the line graph labs(title = paste(“Number of Alive Larvae Over Time (”, rep, “)”, sep = ““), x =”Day”, y = “Number of Alive Larvae”) + scale_color_manual( values = c(“1000” = “red”, “100” = “blue”, “10” = “green”, “NT” = “black”) ) + theme_minimal() + theme( legend.title = element_blank(), legend.text = element_text(size = 10), plot.background = element_rect(fill = “white”, color = NA), # Ensure white background panel.background = element_rect(fill = “white”, color = NA) # Ensure white background )\n# view and save replicates as .png print(p) ggsave(paste0(“plot_”, gsub(” “,”_“, rep),”.png”), plot = p, width = 8, height = 6, bg = “white”) }"
+  },
+  {
+    "objectID": "testing_my_patience.html",
+    "href": "testing_my_patience.html",
+    "title": "testing_my_patience",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "testing_my_patience.html#r-markdown",
+    "href": "testing_my_patience.html#r-markdown",
+    "title": "testing_my_patience",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "testing_my_patience.html#including-plots",
+    "href": "testing_my_patience.html#including-plots",
+    "title": "testing_my_patience",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
   }
 ]

@@ -1,0 +1,135 @@
+---
+title: "Larvae Survivability Assays"
+author: "Yva Eline"
+date: "2024-10-24"
+output: html_document
+---
+
+## Introduction
+
+In multispecies assemblages the bacteria comprising the microbiota serve multiple roles from production and procesing of metabolites to priming and mainaining the immune system and funcitons. The bacterial gut microbiota of adult honey bees (*Apis mellifera*) are well characterized and compriesed of 5-8 highly conserved bacterial species. However, the larval stage of development is highly stochastic consisting of few, random, bacterial species. During this developmental stage, larvae are susceptable to bacterial infections which might be mitigated by the introduction of adult gut microbiota. To determine if adult gut microbial components can be introduced during the larval stage of development, honey bee larvae were treated with doses of a single bacterial component and observed for survivability over a six day period, in laboratory conditions.
+
+This entry walks you through the scripting necessary to generate plots from the survivability replicates.
+
+## Installing and Loading R Packages
+
+Before you can run any script in R, the necessary packages and libraries need to be loaded. The packages used here allow us to read in excel files, manipulate the data, and create plots. You will need to install the following packages and libraries before running the script in R: readxl, dplyr, ggplot2, RColorBrewer
+
+```{r setup, include=FALSE}
+# Install necessary packages
+#install.packages("readxl")
+#install.packages("dplyr")
+#install.packages("ggplot2")
+#install.packages("RColorBrewer")
+
+```
+
+```{r}
+# Load libraries
+library(readxl)
+library(dplyr)
+library(ggplot2)
+library(RColorBrewer)
+```
+
+## Reading in the data and adding a replicate column
+
+We'll need to read in the data from the included excel sheet, larvae_ncimb_lacto.xlsx, and generate a replicate column.
+
+```{r}
+# Read data from each sheet & add a replicate column
+rep1 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_1") %>% mutate(replicate = "Replicate 1")
+rep2 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_2") %>% mutate(replicate = "Replicate 2")
+rep3 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_3") %>% mutate(replicate = "Replicate 3")
+rep4 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_4") %>% mutate(replicate = "Replicate 4")
+```
+
+## Combining & Manipulating the Datasheet
+
+Here we combine the data into one dataframe and converted the treatment labels to uppercase for consistency
+
+```{r}
+# Combine data into one dataframe
+combined_data <- bind_rows(rep1, rep2, rep3, rep4)
+
+# Convert treatment labels to upper case - because I can't be consistent when generating files
+combined_data <- combined_data %>% mutate(treatment = toupper(treatment))
+```
+
+## Creating Individual Plots
+
+We start by generating individual plots of each replicate to visualize the number of larvae alive over time for each treatment
+
+```{r}
+# Individual replicates plots
+palette <- brewer.pal(n = 4, name = "Set2")
+replicates <- unique(combined_data$replicate)
+
+for (rep in replicates) {
+  replicate_data <- combined_data %>% filter(replicate == rep)
+  
+  p <- ggplot(replicate_data, aes(x = day, y = alive_count, color = treatment, group = treatment)) +
+    geom_line(size = 1.5) +  # Thicker lines
+    geom_point(size = 3) +  # Larger points
+    labs(title = paste("Number of Alive Larvae Over Time (", rep, ")", sep = ""),
+         x = "Day",
+         y = "Number of Alive Larvae") +
+    scale_color_manual(
+      values = palette,
+      labels = c("1000" = "1000 cells", "100" = "100 cells", "10" = "10 cells", "NT" = "No Treatment")
+    ) +
+    theme_minimal() +
+    theme(
+      legend.title = element_blank(), 
+      legend.text = element_text(size = 12), # Larger legend text
+      axis.text = element_text(size = 12), # Larger axis text
+      axis.title = element_text(size = 14), # Larger axis titles
+      plot.background = element_rect(fill = "white", color = NA),  # Ensure white background
+      panel.background = element_rect(fill = "white", color = NA)  # Ensure white background
+    )
+  
+  # View the plot
+  print(p)
+}
+
+```
+
+## Summarizing the Data
+
+Finally we summarize the data for each experimental replicate by calculating the mean and standard error for the number of larvae alive, grouped by treatment and day and visualize this in a combined plot.
+
+```{r}
+# Summarize data: calculate mean and standard error for alive larvae by treatment and day
+summary_data <- combined_data %>%
+  group_by(treatment, day) %>%
+  summarize(
+    mean_alive_count = mean(alive_count, na.rm = TRUE),
+    se_alive_count = sd(alive_count, na.rm = TRUE) / sqrt(n())
+  )
+
+# Combined plot with error bars
+combined_plot <- ggplot(summary_data, aes(x = day, y = mean_alive_count, color = treatment, group = treatment)) +
+  geom_line(size = 1.5) +  # Thicker lines
+  geom_point(size = 3) +  # Larger points
+  geom_errorbar(aes(ymin = mean_alive_count - se_alive_count, ymax = mean_alive_count + se_alive_count), width = 0.2, size = 1) + # Thicker error bars
+  labs(title = "Number of Alive Larvae Over Time by Treatment with Error Bars",
+       x = "Day",
+       y = "Mean Number of Alive Larvae") +
+  scale_color_manual(
+    values = palette,
+    labels = c("1000" = "1000 cells", "100" = "100 cells", "10" = "10 cells", "NT" = "No Treatment")
+  ) +
+  theme_minimal() +
+  theme(
+    legend.title = element_blank(), 
+    legend.text = element_text(size = 12), # Larger legend text
+    axis.text = element_text(size = 12), # Larger axis text
+    axis.title = element_text(size = 14), # Larger axis titles
+    plot.background = element_rect(fill = "white", color = NA),  # Ensure white background
+    panel.background = element_rect(fill = "white", color = NA)  # Ensure white background
+  )
+
+# View the plot
+print(combined_plot)
+ggsave("combined_plot.png", plot = combined_plot, width = 8, height = 6, bg = "white")
+```

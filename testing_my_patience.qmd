@@ -25,7 +25,6 @@ library(ggplot2)
 
 ## Load in that sweet sweet spreadsheet and marinate it a bit so that it reads easier
 
-
 ```{r cars}
 # read data from each sheet & add a replicate column
 rep1 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_1") %>% mutate(replicate = "Replicate 1")
@@ -51,89 +50,46 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+install.packages("readxl") install.packages("dplyr") install.packages("ggplot2")
 
-install.packages("readxl")
-install.packages("dplyr")
-install.packages("ggplot2")
-
-library(readxl)
-library(dplyr)
-library(ggplot2)
+library(readxl) library(dplyr) library(ggplot2)
 
 # read data from each sheet & add a replicate column
-rep1 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_1") %>% mutate(replicate = "Replicate 1")
-rep2 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_2") %>% mutate(replicate = "Replicate 2")
-rep3 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_3") %>% mutate(replicate = "Replicate 3")
-rep4 <- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_4") %>% mutate(replicate = "Replicate 4")
+
+rep1 \<- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_1") %\>% mutate(replicate = "Replicate 1") rep2 \<- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_2") %\>% mutate(replicate = "Replicate 2") rep3 \<- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_3") %\>% mutate(replicate = "Replicate 3") rep4 \<- read_excel("larvae_ncimb_lacto.xlsx", sheet = "replicate_4") %\>% mutate(replicate = "Replicate 4")
 
 # combine data into one dataframe
-combined_data <- bind_rows(rep1, rep2, rep3, rep4)
+
+combined_data \<- bind_rows(rep1, rep2, rep3, rep4)
 
 # convert treatment labels to upper case - because I am a dummy
-combined_data <- combined_data %>% mutate(treatment = toupper(treatment))
+
+combined_data \<- combined_data %\>% mutate(treatment = toupper(treatment))
 
 # inspect
-print(head(combined_data))
-print(str(combined_data))
+
+print(head(combined_data)) print(str(combined_data))
 
 # summarize data: calculate mean and standard error for alive larvae by treatment and day
-summary_data <- combined_data %>%
-  group_by(treatment, day) %>%
-  summarize(
-    mean_alive_count = mean(alive_count, na.rm = TRUE),
-    se_alive_count = sd(alive_count, na.rm = TRUE) / sqrt(n())
-  )
 
-#inspect summarized data - because here thar might be fuck ups, yarrr
-print(summary_data)
+summary_data \<- combined_data %\>% group_by(treatment, day) %\>% summarize( mean_alive_count = mean(alive_count, na.rm = TRUE), se_alive_count = sd(alive_count, na.rm = TRUE) / sqrt(n()) )
+
+#inspect summarized data - because here thar might be fuck ups, yarrr print(summary_data)
 
 # combined plot with error bars
-combined_plot <- ggplot(summary_data, aes(x = day, y = mean_alive_count, color = treatment, group = treatment)) +
-  geom_line() +  # Line graph
-  geom_point() + # Points on the line graph
-  geom_errorbar(aes(ymin = mean_alive_count - se_alive_count, ymax = mean_alive_count + se_alive_count), width = 0.2) + # Error bars
-  labs(title = "Number of Alive Larvae Over Time by Treatment with Error Bars",
-       x = "Day",
-       y = "Mean Number of Alive Larvae") +
-  scale_color_manual(
-    values = c("1000" = "red", "100" = "blue", "10" = "green", "NT" = "black")
-  ) +
-  theme_minimal() +
-  theme(
-    legend.title = element_blank(), 
-    legend.text = element_text(size = 10),
-    plot.background = element_rect(fill = "white", color = NA),  # Ensure white background
-    panel.background = element_rect(fill = "white", color = NA)  # Ensure white background
-  )
+
+combined_plot \<- ggplot(summary_data, aes(x = day, y = mean_alive_count, color = treatment, group = treatment)) + geom_line() + \# Line graph geom_point() + \# Points on the line graph geom_errorbar(aes(ymin = mean_alive_count - se_alive_count, ymax = mean_alive_count + se_alive_count), width = 0.2) + \# Error bars labs(title = "Number of Alive Larvae Over Time by Treatment with Error Bars", x = "Day", y = "Mean Number of Alive Larvae") + scale_color_manual( values = c("1000" = "red", "100" = "blue", "10" = "green", "NT" = "black") ) + theme_minimal() + theme( legend.title = element_blank(), legend.text = element_text(size = 10), plot.background = element_rect(fill = "white", color = NA), \# Ensure white background panel.background = element_rect(fill = "white", color = NA) \# Ensure white background )
 
 # view and save combined plot as .png
-print(combined_plot)
-ggsave("combined_plot.png", plot = combined_plot, width = 8, height = 6, bg = "white")
+
+print(combined_plot) ggsave("combined_plot.png", plot = combined_plot, width = 8, height = 6, bg = "white")
 
 # now for the individual replicates
-replicates <- unique(combined_data$replicate)
 
-for (rep in replicates) {
-  replicate_data <- combined_data %>% filter(replicate == rep)
-  
-  p <- ggplot(replicate_data, aes(x = day, y = alive_count, color = treatment, group = treatment)) +
-    geom_line() +  # Line graph
-    geom_point() + # Points on the line graph
-    labs(title = paste("Number of Alive Larvae Over Time (", rep, ")", sep = ""),
-         x = "Day",
-         y = "Number of Alive Larvae") +
-    scale_color_manual(
-      values = c("1000" = "red", "100" = "blue", "10" = "green", "NT" = "black")
-    ) +
-    theme_minimal() +
-    theme(
-      legend.title = element_blank(), 
-      legend.text = element_text(size = 10),
-      plot.background = element_rect(fill = "white", color = NA),  # Ensure white background
-      panel.background = element_rect(fill = "white", color = NA)  # Ensure white background
-    )
-  
-  # view and save replicates as .png
-  print(p)
-  ggsave(paste0("plot_", gsub(" ", "_", rep), ".png"), plot = p, width = 8, height = 6, bg = "white")
-}
+replicates \<- unique(combined_data\$replicate)
+
+for (rep in replicates) { replicate_data \<- combined_data %\>% filter(replicate == rep)
+
+p \<- ggplot(replicate_data, aes(x = day, y = alive_count, color = treatment, group = treatment)) + geom_line() + \# Line graph geom_point() + \# Points on the line graph labs(title = paste("Number of Alive Larvae Over Time (", rep, ")", sep = ""), x = "Day", y = "Number of Alive Larvae") + scale_color_manual( values = c("1000" = "red", "100" = "blue", "10" = "green", "NT" = "black") ) + theme_minimal() + theme( legend.title = element_blank(), legend.text = element_text(size = 10), plot.background = element_rect(fill = "white", color = NA), \# Ensure white background panel.background = element_rect(fill = "white", color = NA) \# Ensure white background )
+
+\# view and save replicates as .png print(p) ggsave(paste0("plot\_", gsub(" ", "\_", rep), ".png"), plot = p, width = 8, height = 6, bg = "white") }
